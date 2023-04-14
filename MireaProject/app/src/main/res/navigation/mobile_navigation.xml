@@ -32,6 +32,11 @@
         android:name="ru.mirea.sergeevaum.mireaproject.WebViewFragment"
         android:label="fragment_web_view"
         tools:layout="@layout/fragment_web_view" />
+    <fragment
+        android:id="@+id/mediaFragment"
+        android:name="ru.mirea.sergeevaum.mireaproject.MediaFragment"
+        android:label="fragment_media"
+        tools:layout="@layout/fragment_media" />
 
 
 </navigation>
