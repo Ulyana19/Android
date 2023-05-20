@@ -27,6 +27,7 @@
         android:name="ru.mirea.sergeevaum.mireaproject.DataFragment"
         android:label="fragment_data"
         tools:layout="@layout/fragment_data" />
+
     <fragment
         android:id="@+id/webViewFragment"
         android:name="ru.mirea.sergeevaum.mireaproject.WebViewFragment"
@@ -37,6 +38,22 @@
         android:name="ru.mirea.sergeevaum.mireaproject.MediaFragment"
         android:label="fragment_media"
         tools:layout="@layout/fragment_media" />
+
+    <fragment
+        android:id="@+id/sensorFragment"
+        android:name="ru.mirea.sergeevaum.mireaproject.SensorFragment"
+        android:label="fragment_sensor"
+        tools:layout="@layout/fragment_sensor" />
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="ru.mirea.sergeevaum.mireaproject.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" />
+    <fragment
+        android:id="@+id/recordFragment"
+        android:name="ru.mirea.sergeevaum.mireaproject.RecordFragment"
+        android:label="fragment_record"
+        tools:layout="@layout/fragment_record" />
 
 
 </navigation>
