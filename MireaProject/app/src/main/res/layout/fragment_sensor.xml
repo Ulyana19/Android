@@ -5,10 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".SensorFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/TextView13"
+        android:layout_width="207dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginRight="100dp"
+        android:textAlignment="viewStart"
+        android:textColor="#FF9100"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 </FrameLayout>
