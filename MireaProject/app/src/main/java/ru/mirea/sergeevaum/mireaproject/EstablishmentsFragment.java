@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import ru.mirea.sergeevaum.mireaproject.databinding.FragmentEstablishmentsBinding;
-import ru.mirea.sergeevaum.mireaproject.databinding.FragmentHttpBinding;
+
 
 /**
  * A simple {@link Fragment} subclass.
