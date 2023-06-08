@@ -74,4 +74,9 @@
         android:name="ru.mirea.sergeevaum.mireaproject.HttpFragment"
         android:label="fragment_http"
         tools:layout="@layout/fragment_http" />
+    <fragment
+        android:id="@+id/establishmentsFragment"
+        android:name="ru.mirea.sergeevaum.mireaproject.EstablishmentsFragment"
+        android:label="fragment_establishments"
+        tools:layout="@layout/fragment_establishments" />
 </navigation>
