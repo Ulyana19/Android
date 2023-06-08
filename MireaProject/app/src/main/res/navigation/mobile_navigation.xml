@@ -64,6 +64,9 @@
         android:name="ru.mirea.sergeevaum.mireaproject.FileFragment"
         android:label="fragment_file"
         tools:layout="@layout/fragment_file" />
-
-
+    <fragment
+        android:id="@+id/firebaseFragment"
+        android:name="ru.mirea.sergeevaum.mireaproject.FirebaseFragment"
+        android:label="fragment_firebase"
+        tools:layout="@layout/fragment_firebase" />
 </navigation>
