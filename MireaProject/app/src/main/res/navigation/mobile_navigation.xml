@@ -69,4 +69,9 @@
         android:name="ru.mirea.sergeevaum.mireaproject.FirebaseFragment"
         android:label="fragment_firebase"
         tools:layout="@layout/fragment_firebase" />
+    <fragment
+        android:id="@+id/httpFragment"
+        android:name="ru.mirea.sergeevaum.mireaproject.HttpFragment"
+        android:label="fragment_http"
+        tools:layout="@layout/fragment_http" />
 </navigation>

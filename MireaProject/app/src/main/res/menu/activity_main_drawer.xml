@@ -53,6 +53,10 @@
             android:id="@+id/firebaseFragment"
             android:icon="@drawable/ic_launcher_background"
             android:title="FirebaseFragment"/>
+        <item
+            android:id="@+id/httpFragment"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="HttpFragment"/>
 
 
     </group>
