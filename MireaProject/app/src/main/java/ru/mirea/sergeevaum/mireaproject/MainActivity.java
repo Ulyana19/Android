@@ -1,11 +1,15 @@
 package ru.mirea.sergeevaum.mireaproject;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.yandex.runtime.device.AppInfo;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -14,6 +18,9 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ru.mirea.sergeevaum.mireaproject.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,9 +28,14 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
+    private List appList = null;
+    private Context context;
+    private PackageManager packageManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

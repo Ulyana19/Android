@@ -79,4 +79,10 @@
         android:name="ru.mirea.sergeevaum.mireaproject.EstablishmentsFragment"
         android:label="fragment_establishments"
         tools:layout="@layout/fragment_establishments" />
+
+    <fragment
+        android:id="@+id/appFragment"
+        android:name="ru.mirea.sergeevaum.mireaproject.Application"
+        android:label="fragment_application"
+        tools:layout="@layout/fragment_application" />
 </navigation>

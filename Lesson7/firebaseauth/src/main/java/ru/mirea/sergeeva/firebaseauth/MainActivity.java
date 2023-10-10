@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -82,6 +83,8 @@ public class MainActivity extends AppCompatActivity{
                     user.getEmail(), user.isEmailVerified()));
             binding.textViewID.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
+            binding.textView6.setText(getDeviceId());
+
             binding.emailPasswordButtons.setVisibility(View.GONE);
             binding.emailPasswordFields.setVisibility(View.GONE);
             binding.passwordEdit.setVisibility(View.GONE);
@@ -101,6 +104,12 @@ public class MainActivity extends AppCompatActivity{
             binding.signedOutButtons.setVisibility(View.GONE);
             binding.LinerLayout3.setVisibility(View.VISIBLE);
         }
+    }
+
+    public String getDeviceId() {
+        String uniId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        binding.textView6.setText(uniId);
+        return uniId;
     }
 
     private void createAccount(String email, String password) {
@@ -142,6 +151,9 @@ public class MainActivity extends AppCompatActivity{
                         if (!task.isSuccessful()) {
                             binding.statusTextView.setText(R.string.auth_failed);
                         }
+
+//                        String uniId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+//                        binding.textView6.setText(uniId);
                     }
                 });
     }

@@ -62,6 +62,10 @@
             android:icon="@drawable/ic_launcher_background"
             android:title="EstablishmentsFragment"/>
 
+        <item
+            android:id="@+id/appFragment"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Application"/>
 
     </group>
 </menu>
