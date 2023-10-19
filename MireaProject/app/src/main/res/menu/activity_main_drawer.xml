@@ -16,6 +16,12 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
+
+        <item
+            android:id="@+id/appFragment"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Application"/>
+
         <item
             android:id="@+id/dataFragment"
             android:icon="@drawable/ic_launcher_background"
@@ -61,11 +67,6 @@
             android:id="@+id/establishmentsFragment"
             android:icon="@drawable/ic_launcher_background"
             android:title="EstablishmentsFragment"/>
-
-        <item
-            android:id="@+id/appFragment"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="Application"/>
 
     </group>
 </menu>

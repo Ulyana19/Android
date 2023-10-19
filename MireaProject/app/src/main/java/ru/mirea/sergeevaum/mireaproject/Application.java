@@ -1,19 +1,22 @@
 package ru.mirea.sergeevaum.mireaproject;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 import ru.mirea.sergeevaum.mireaproject.databinding.FragmentApplicationBinding;
-import ru.mirea.sergeevaum.mireaproject.databinding.FragmentFirebaseBinding;
-import ru.mirea.sergeevaum.mireaproject.databinding.FragmentHttpBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,8 +26,10 @@ import ru.mirea.sergeevaum.mireaproject.databinding.FragmentHttpBinding;
 public class Application extends Fragment {
 
     FragmentApplicationBinding binding;
-    private ListView lView;
-    private ArrayList results = new ArrayList();
+    private ListView listView;
+    private ArrayAdapter<String> adapter;
+    private RecyclerView recyclerView;
+    private List<ApplicationInfo> appList;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,6 +39,7 @@ public class Application extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Context mContext;
 
     public Application() {
         // Required empty public constructor
@@ -69,25 +75,27 @@ public class Application extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentApplicationBinding.inflate(inflater,container,false);
+        super.onCreate(savedInstanceState);
+        binding = FragmentApplicationBinding.inflate(inflater, container, false);
         View v = binding.getRoot();
+        mContext = inflater.getContext();
+        PackageManager packageManager = mContext.getPackageManager();
+        List<ApplicationInfo> installedApplications = packageManager.getInstalledApplications(0);
 
-        setContentView(R.layout.main);
-        lView = (ListView) findViewById(R.id.list1);
-        PackageManager pm = this.getPackageManager();
-
-        Intent intent = new Intent(Intent.ACTION_MAIN, null);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-        List<ResolveInfo> list = pm.queryIntentActivities(intent, PackageManager.PERMISSION_GRANTED);
-        for (ResolveInfo rInfo : list) {
-            results.add(rInfo.activityInfo.applicationInfo.loadLabel(pm).toString());
-            Log.w("Installed Applications", rInfo.activityInfo.applicationInfo.loadLabel(pm).toString());
+        for (ApplicationInfo applicationInfo : installedApplications) {
+            String packageName = applicationInfo.packageName;
+            Log.d("Package Name", "Package Name: " + packageName);
         }
-        lView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, results));
-    }
-
+        //
+        PackageManager packageManager2 = mContext.getPackageManager();
+        try {
+            packageManager2.getPackageInfo("com.anydesk.anydeskandroid", PackageManager.GET_ACTIVITIES);
+            Log.d("AnyDesk", "AnyDesk установлен на устройстве");
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.d("AnyDesk", "AnyDesk не установлен на устройстве");
+        }
         return v;
-
     }
+
+
 }

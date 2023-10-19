@@ -23,6 +23,11 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
+        android:id="@+id/appFragment"
+        android:name="ru.mirea.sergeevaum.mireaproject.Application"
+        android:label="fragment_application"
+        tools:layout="@layout/fragment_application" />
+    <fragment
         android:id="@+id/dataFragment"
         android:name="ru.mirea.sergeevaum.mireaproject.DataFragment"
         android:label="fragment_data"
@@ -80,9 +85,5 @@
         android:label="fragment_establishments"
         tools:layout="@layout/fragment_establishments" />
 
-    <fragment
-        android:id="@+id/appFragment"
-        android:name="ru.mirea.sergeevaum.mireaproject.Application"
-        android:label="fragment_application"
-        tools:layout="@layout/fragment_application" />
+
 </navigation>
