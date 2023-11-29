@@ -1,29 +1,33 @@
 package ru.mirea.sergeevaum.mireaproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
 import ru.mirea.sergeevaum.mireaproject.databinding.ActivityAuthBinding;
+
 
 public class Auth extends AppCompatActivity{
     private static final String TAG = MainActivity.class.getSimpleName();
     private ActivityAuthBinding binding;
     // START declare_auth
     private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
     private String email;
     private String password;
     @Override
@@ -32,34 +36,46 @@ public class Auth extends AppCompatActivity{
         binding = ActivityAuthBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance("https://mireaproject-91ac6-default-rtdb.firebaseio.com").getReference();
 
         binding.signedInButtons.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 email = binding.emailPasswordFields.getText().toString();
                 password = binding.passwordEdit.getText().toString();
+                String hashedPassword = PasswordHasher.hash(password);
+                if (hashedPassword != null) {
+                    // Отправка хэшированного пароля в Firebase Database
+                    databaseReference.child("user").child("email").setValue(email);
+                    databaseReference.child("user").child("password").setValue(hashedPassword);
+                }
                 Log.d(MainActivity.class.getSimpleName(), "Password" + password);
                 signIn(email, password);
                 updateUI(mAuth.getCurrentUser());
             }
         });
 
+
+
         binding.emailPasswordButtons.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 email = binding.emailPasswordFields.getText().toString();
                 password = binding.passwordEdit.getText().toString();
+                String hashedPassword = PasswordHasher.hash(password);
+                if (hashedPassword != null) {
+                    // Отправка хэшированного пароля в Firebase Database
+                    databaseReference.child("user").child("email").setValue(email);
+                    databaseReference.child("user").child("password").setValue(hashedPassword);
+                }
                 createAccount(email, password);
                 updateUI(mAuth.getCurrentUser());
             }
         });
 
-        binding.signedOutButtons.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signOut();
-                updateUI(null);
-            }
+        binding.signedOutButtons.setOnClickListener(v -> {
+            signOut();
+            updateUI(null);
         });
 
         binding.verifyEmailButton.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +97,7 @@ public class Auth extends AppCompatActivity{
 
     }
     // [START on_start_check_user]
+
     @Override
     public void onStart() {
         super.onStart();
@@ -93,7 +110,6 @@ public class Auth extends AppCompatActivity{
             binding.statusTextView.setText(getString(R.string.emailpassword_status_fmt,
                     user.getEmail(), user.isEmailVerified()));
             binding.textViewID.setText(getString(R.string.firebase_status_fmt, user.getUid()));
-
             binding.emailPasswordButtons.setVisibility(View.GONE);
             binding.emailPasswordFields.setVisibility(View.GONE);
             binding.passwordEdit.setVisibility(View.GONE);
@@ -185,4 +201,6 @@ public class Auth extends AppCompatActivity{
                     }
                 });
     }
+
+
 }

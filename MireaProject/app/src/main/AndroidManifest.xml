@@ -27,9 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MireaProject"
         tools:targetApi="31">
-        <activity
-            android:name=".App"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".App"-->
+<!--            android:exported="false" />-->
 
         <activity
             android:name=".PlaceMap"
